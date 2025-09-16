@@ -24,6 +24,27 @@ function mergeList(list1, list2) {
     return result;
 }
 
+function mergeListIndexBase(list1, list2, i = 0, j = 0) {
+    if (i >= list1.length && j >= list2.length) {
+        return [];
+    }
+
+    let result = [];
+    if (i < list1.length) {
+        result.push(list1[i]);
+        i++;
+    }
+
+    if (j < list2.length) {
+        result.push(list2[j]);
+        j++;
+    }
+
+    return [...result, ...mergeListIndexBase(list1, list2, i, j)];
+    // to avoid (...) pass result as argument and take result = [] as parameter
+}
+
 console.log(mergeList([...list1], [...list2]));
+console.log(mergeListIndexBase(list1, list2));
 console.log(list1);
 console.log(list2);
