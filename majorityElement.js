@@ -33,8 +33,26 @@ var majorityElement = function (nums) {
     return Object.keys(frequency).find(k => frequency[k] === max);
 };
 
+function majorityElement_2(num) {
+    let frequency = {};
+    let max = 0;
+    let major = num[0];
+
+    for (let n of num) {
+        frequency[n] = (frequency[n] || 0) + 1;
+        if (frequency[n] > max) {
+            max = frequency[n];
+            major = n;
+        }
+    }
+
+    return major;
+}
+
 let list1 = [3, 2, 3];
 console.log(majorityElement(list1));
+console.log(majorityElement_2(list1));
 
 let list2 = [2, 2, 1, 1, 1, 2, 2];
 console.log(majorityElement(list2));
+console.log(majorityElement_2(list2));
