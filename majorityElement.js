@@ -49,8 +49,21 @@ function majorityElement_2(num) {
     return major;
 }
 
+var majorityElement_3 = function (nums) {
+    const frequency = {};
+    const n = nums.length;
+
+    for (let num of nums) {
+        frequency[num] = (frequency[num] || 0) + 1;
+
+        if (frequency[num] > n / 2) {
+            return num;
+        }
+    }
+};
+
 // Boyer–Moore Majority Vote Algorithm
-var majorityElementBoyerMoore = function(nums) {
+var majorityElementBoyerMoore = function (nums) {
     let candidate = null, count = 0;
     for (let num of nums) {
         if (count === 0) {
