@@ -49,6 +49,18 @@ function majorityElement_2(num) {
     return major;
 }
 
+// Boyer–Moore Majority Vote Algorithm
+var majorityElementBoyerMoore = function(nums) {
+    let candidate = null, count = 0;
+    for (let num of nums) {
+        if (count === 0) {
+            candidate = num;
+        }
+        count += (num === candidate) ? 1 : -1;
+    }
+    return candidate;
+};
+
 let list1 = [3, 2, 3];
 console.log(majorityElement(list1));
 console.log(majorityElement_2(list1));
