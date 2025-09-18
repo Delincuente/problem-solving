@@ -27,9 +27,31 @@ SELECT
 FROM `maintable_omjjr` AS `m1`
 WHERE MONTH(`m1`.DateJoined) != 1 GROUP BY Month ORDER BY DateJoined;
 
+
+-- sql
+-- SELECT 
+--   DATE_FORMAT(current.month_date, '%M') AS Month,
+--   (current.user_count - previous.user_count) AS MonthToMonthChange
+-- FROM (
+--   SELECT 
+--     DATE_FORMAT(date, '%Y-%m') AS month,
+--     MIN(date) AS month_date,
+--     COUNT(*) AS user_count
+--   FROM maintable_YKJ8N
+--   GROUP BY month
+-- ) current
+-- JOIN (
+--   SELECT 
+--     DATE_FORMAT(date, '%Y-%m') AS month,
+--     COUNT(*) AS user_count
+--   FROM maintable_YKJ8N
+--   GROUP BY month
+-- ) previous
+-- ON DATE_FORMAT(current.month_date, '%Y-%m') = 
+--    DATE_FORMAT(DATE_ADD(previous.month, INTERVAL 1 MONTH), '%Y-%m');
+
+
 -- Explanation:
 -- - We group the users by month and count signups.
 -- - Use a self-join to compare the current month with the previous month.
 -- - The result shows the month name and the change in user count from the previous month.
-
--- Let me know if you want this rewritten for another SQL dialect like PostgreSQL
