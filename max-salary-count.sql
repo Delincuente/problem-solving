@@ -39,6 +39,7 @@ FROM (
 WHERE rnk = 1;
 
 
+-- best and most optimal for big dataset
 -- Alternate solution - 3
 -- use subquery in where cause filter
 SELECT 
