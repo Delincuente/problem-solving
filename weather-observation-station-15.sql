@@ -21,3 +21,12 @@ WHERE
 ORDER BY 
     LAT_N DESC
 LIMIT 1;
+
+-- Alternative - 2
+SELECT ROUND(LONG_W, 4)
+FROM (
+    SELECT LONG_W, ROW_NUMBER() OVER (ORDER BY LAT_N DESC) AS rn
+    FROM station
+    WHERE LAT_N < 137.2345
+) x
+WHERE rn = 1;
