@@ -13,15 +13,15 @@
 // Input: grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]
 // Output: 16
 // Explanation: The perimeter is the 16 yellow stripes in the image above.
-// Example 2:
 
+// Example 2:
 // Input: grid = [[1]]
 // Output: 4
-// Example 3:
 
+// Example 3:
 // Input: grid = [[1,0]]
 // Output: 4
- 
+
 
 // Constraints:
 
@@ -31,6 +31,46 @@
 // grid[i][j] is 0 or 1.
 // There is exactly one island in grid.
 
-grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]
-grid = [[1]]
-grid = [[1, 0]]
+function islandPerimeter(grid) {
+    let perimeter = 0;
+    let row = grid.length;
+    let col = grid[0].length;
+    for (let i = 0; i < row; i++) {
+        for (let j = 0; j < col; j++) {
+            if (i == 0) {
+                if (grid[i][j] == 1) { perimeter++; }
+            } else {
+                if (grid[i][j] == 1 && (grid[i - 1][j] == 0)) perimeter++;
+            }
+
+            if (j == 0) {
+                if (grid[i][j] == 1) { perimeter++; }
+            } else {
+                if (grid[i][j] == 1 && (grid[i][j - 1] == 0)) perimeter++;
+            }
+
+            if (i == (row - 1)) {
+                if (grid[i][j] == 1) { perimeter++; }
+            } else {
+                if (grid[i][j] == 1 && (grid[i + 1][j] == 0)) perimeter++;
+            }
+
+            if (j == (col - 1)) {
+                if (grid[i][j] == 1) { perimeter++; }
+            } else {
+                if (grid[i][j] == 1 && (grid[i][j + 1] == 0)) perimeter++;
+            }
+        }
+    }
+
+    return perimeter;
+}
+
+grid = [[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]] // 16
+islandPerimeter(grid);
+
+grid = [[1]] // 4
+islandPerimeter(grid);
+
+grid = [[1, 0]] // 4
+islandPerimeter(grid);
