@@ -66,11 +66,39 @@ function islandPerimeter(grid) {
     return perimeter;
 }
 
+function islandPerimeterDirection(grid) {
+    let perimeter = 0;
+    const row = grid.length, col = grid[0].length;
+    const direction = [
+        [-1, 0],    // UP
+        [1, 0],     // Down
+        [0, -1],    // Left
+        [0, 1]      // Right
+    ];
+
+    for (let i = 0; i < row; i++) {
+        for (let j = 0; j < col; j++) {
+            if (grid[i][j] == 1) {
+                for (const [x, y] of direction) {
+                    const ix = i + x, jy = j + y;
+                    if (ix < 0 || jy < 0 || ix >= row || jy >= col || grid[ix][jy] == 0) perimeter++;
+                }
+            }
+        }
+
+    }
+    return perimeter;
+}
+
+
 grid = [[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]] // 16
-islandPerimeter(grid);
+console.log("islandPerimeter:", islandPerimeter(grid));
+console.log("islandPerimeterDirection:", islandPerimeterDirection(grid));
 
 grid = [[1]] // 4
-islandPerimeter(grid);
+console.log("islandPerimeter:", islandPerimeter(grid));
+console.log("islandPerimeterDirection:", islandPerimeterDirection(grid));
 
 grid = [[1, 0]] // 4
-islandPerimeter(grid);
+console.log("islandPerimeter:", islandPerimeter(grid));
+console.log("islandPerimeterDirection:", islandPerimeterDirection(grid));
