@@ -41,6 +41,14 @@ class DoublyLinkedList {
             fast = fast.next;
         }
 
+        if (!fast) {
+            this.head = this.head.next;
+            if (!this.head) this.tail = null;
+            else this.head.prev = null;
+            return;
+        }
+
+        // wrong way (not giving correct OP)
         // for (let i = 0; i < n && fast; i++) {
         //     fast = fast.next;
         // }
@@ -51,17 +59,22 @@ class DoublyLinkedList {
             slow = slow.next;
         }
 
-        if (slow === this.head) {
-            this.head = slow.next;
-            if (!this.head) this.tail = null;
-            else this.head.prev = null;
-            slow = null;
-        } else {
-            slow.prev.next = slow.next;
-            if (slow.next) slow.next.prev = slow.prev;
-            else this.tail = slow.prev;
-            slow = null;
-        }
+        slow.prev.next = slow.next;
+        if (slow.next) slow.next.prev = slow.prev;
+        else this.tail = slow.prev;
+
+        // this work as well (no need to wrile the if(!fast){...})
+        // if (slow === this.head) {
+        //     this.head = slow.next;
+        //     if (!this.head) this.tail = null;
+        //     else this.head.prev = null;
+        //     slow = null;
+        // } else {
+        //     slow.prev.next = slow.next;
+        //     if (slow.next) slow.next.prev = slow.prev;
+        //     else this.tail = slow.prev;
+        //     slow = null;
+        // }
     }
 }
 
